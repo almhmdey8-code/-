@@ -59,8 +59,11 @@ footer{background:#0d241a;color:#c6d3c7;padding:28px 0;text-align:center;font-si
  const bucket='abuabdullah-media';
  const labels={palm_supply:'توريد وزراعة النخيل',landscaping:'تنسيق الحدائق',tree_transport:'توريد ونقل الأشجار والشتلات',fencing:'تنفيذ وتركيب الشبوك',farm_maintenance:'صيانة المزارع',gallery:'معرض الأعمال',advertisements:'الإعلانات'};
  const {data,error}=await client.from('site_media').select('*').eq('is_published',true).order('sort_order').order('created_at',{ascending:false});
- const mediaRows=error||!data?[]:data;
+ const allMediaRows=error||!data?[]:data;
+ const homeCover=allMediaRows.find(x=>x.title==='__APEX_HOME_COVER__');
+ const mediaRows=allMediaRows.filter(x=>x.title!=='__APEX_HOME_COVER__');
  const urlFor=p=>client.storage.from(bucket).getPublicUrl(p).data.publicUrl;
+ if(homeCover){const aboutImage=document.querySelector('.about-img');if(aboutImage){const img=document.createElement('img');img.src=urlFor(homeCover.object_path);img.alt='صورة الواجهة - أبو عبدالله للأعمال الزراعية';img.style.cssText='width:100%;height:100%;object-fit:cover;display:block';aboutImage.replaceChildren(img);}}
  function makeMedia(m,forTile=false){const u=urlFor(m.object_path);let el;if(m.media_type==='video'){el=document.createElement('video');el.src=u;el.controls=!forTile;el.muted=forTile;el.playsInline=true;el.preload='metadata';}else{el=document.createElement('img');el.src=u;el.alt=m.title||labels[m.section]||'من أعمال أبو عبدالله';el.loading='lazy';}return el;}
  const featured={palm_supply:'.service[data-section="palm_supply"] .service-photo',landscaping:'.service[data-section="landscaping"] .service-photo',tree_transport:'.service[data-section="tree_transport"] .service-photo',fencing:'.service[data-section="fencing"] .service-photo',farm_maintenance:'.service[data-section="farm_maintenance"] .service-photo'};
  Object.entries(featured).forEach(([section,selector])=>{const m=mediaRows.find(x=>x.section===section&&x.is_cover&&x.media_type==='image')||mediaRows.find(x=>x.section===section&&x.media_type==='image');const el=document.querySelector(selector);if(m&&el){const img=makeMedia(m,true);img.style.cssText='width:100%;height:100%;object-fit:cover;display:block';el.replaceChildren(img);}});
