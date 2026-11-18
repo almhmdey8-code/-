@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#174b35"><title>لوحة مدير أبو أسامة</title>
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--g:#174b35;--g2:#286b49;--bg:#f4f7f0;--line:#e1e9dc;--muted:#68776d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#203328;font-family:Almarai,sans-serif;line-height:1.8}
+.wrap{width:min(1050px,calc(100% - 30px));margin:auto}.top{background:var(--g);color:#fff;padding:18px 0}.topin{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-size:19px;font-weight:800}.brand small{display:block;font-size:11px;color:#d4e4d5;font-weight:400}.pill{font-size:11px;background:#ffffff20;border:1px solid #ffffff35;padding:5px 11px;border-radius:20px}
+main{padding:35px 0}.panel{max-width:520px;margin:35px auto;background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 15px 45px #173e2910}.panel h1{font-size:24px;color:var(--g);margin:0 0 5px}.muted{color:var(--muted);font-size:13px;margin:0 0 20px}
+label{display:block;font-size:13px;font-weight:700;margin:12px 0 6px}input,textarea{width:100%;padding:13px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fcfdfb;outline:none}input:focus,textarea:focus{border-color:var(--g2)}
+button,.btn{border:0;background:var(--g);color:#fff;padding:12px 18px;border-radius:12px;font:700 13px Almarai;cursor:pointer}.wide{width:100%;margin-top:15px}.error{color:#b42318;font-size:12px;margin-top:10px;min-height:20px}
+#dashboard{display:none}.welcome{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:20px}.welcome h1{margin:0;color:var(--g);font-size:25px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}.card h2{font-size:17px;color:var(--g);margin:0 0 5px}.card p{font-size:12px;color:var(--muted);margin:0 0 13px}.note{background:#fff8e6;border:1px solid #f0dfae;color:#72591c;border-radius:12px;padding:12px;font-size:12px;margin:18px 0}.actions{display:flex;gap:8px;flex-wrap:wrap}.secondary{background:#eaf1e5;color:var(--g)}.preview{width:100%;height:150px;object-fit:cover;border-radius:12px;background:#eef2e9;margin-top:10px;display:none}.sectionlist{display:grid;gap:8px;margin-top:10px}.sectionitem{padding:10px 12px;background:#f6f9f3;border-radius:10px;font-size:13px;display:flex;justify-content:space-between}.small{font-size:11px;color:var(--muted)}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.panel{padding:20px}.topin{align-items:flex-start}}
+</style></head>
+<body>
+<header class="top"><div class="wrap topin"><div class="brand">🌴 أبو أسامة للأعمال الزراعية<small>لوحة إدارة الموقع</small></div><span class="pill">إدارة مستقلة</span></div></header>
+<main class="wrap">
+<section class="panel" id="login">
+<h1>دخول المدير</h1><p class="muted">أدخل رقم المدير المعتمد للوصول إلى لوحة الإدارة.</p>
+<label for="phone">رقم الجوال</label><input id="phone" type="tel" inputmode="numeric" placeholder="05xxxxxxxx" autocomplete="tel">
+<button class="wide" id="enter">دخول اللوحة</button><div class="error" id="error" role="alert"></div>
+<p class="small">الرقم المعتمد لهذه اللوحة: 0530301590</p>
+</section>
+<section id="dashboard">
+<div class="welcome"><div><h1>مرحبًا بك في لوحة المدير</h1><div class="small">إدارة متجر أبو أسامة للأعمال الزراعية</div></div><button class="secondary" id="logout">تسجيل الخروج</button></div>
+<div class="note">تنبيه: هذه نسخة أولية للواجهة. التحقق بالرقم داخل صفحة ثابتة ليس حماية حقيقية؛ يمكن تجاوزها تقنيًا. كما أن التعديلات هنا لا تُنشر للزوار ولا تُحفظ على خادم مشترك حتى إعداد خدمة خلفية مستقلة وقواعد صلاحيات.</div>
+<div class="grid">
+<div class="card"><h2>لوحة عرض الصور</h2><p>أدخل رابط صورة لمعاينتها ضمن لوحة العرض الرئيسية.</p><label for="slideUrl">رابط الصورة</label><input id="slideUrl" type="url" placeholder="https://example.com/image.jpg"><img id="slidePreview" class="preview" alt="معاينة الصورة"><div class="actions"><button id="previewBtn">معاينة الصورة</button><button class="secondary" id="clearPreview">مسح</button></div></div>
+<div class="card"><h2>أقسام المتجر</h2><p>الأقسام الحالية في الموقع.</p><div class="sectionlist"><div class="sectionitem">بيوت محمية <b>✓</b></div><div class="sectionitem">نخيل عربي <b>✓</b></div><div class="sectionitem">نخيل واشنطنيا <b>✓</b></div><div class="sectionitem">شتلات زينة <b>✓</b></div><div class="sectionitem">شبوك وسياج <b>✓</b></div></div></div>
+<div class="card"><h2>معلومات التواصل</h2><p>رقم واتساب المرتبط بموقع المتجر.</p><label>رقم التواصل</label><input value="0530301590" readonly><div class="small">رابط التواصل الحالي في الموقع يستخدم الرقم الدولي 966530301590.</div></div>
+<div class="card"><h2>إدارة الصور والمحتوى</h2><p>ستُفعّل إضافة الصور وحذفها وتحديث محتوى الأقسام بعد ربط قاعدة بيانات وتخزين مستقلين.</p><button class="secondary" disabled>بانتظار ربط التخزين</button></div>
+</div>
+</section>
+</main>
+<script>
+const ADMIN='0530301590';
+const login=document.getElementById('login'),dash=document.getElementById('dashboard'),phone=document.getElementById('phone'),error=document.getElementById('error');
+document.getElementById('enter').addEventListener('click',()=>{const normalized=phone.value.replace(/[\\s-]/g,'');if(normalized===ADMIN){login.style.display='none';dash.style.display='block';error.textContent='';}else{error.textContent='هذا الرقم غير مصرح له بالدخول.';}});
+phone.addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('enter').click()});
+document.getElementById('logout').addEventListener('click',()=>{dash.style.display='none';login.style.display='block';phone.value='';});
+document.getElementById('previewBtn').addEventListener('click',()=>{const url=document.getElementById('slideUrl').value.trim(),img=document.getElementById('slidePreview');try{const u=new URL(url);if(!['https:','http:'].includes(u.protocol))throw 0;img.src=u.href;img.style.display='block';}catch(e){img.style.display='none';alert('أدخل رابط صورة صحيحًا يبدأ بـ https://');}});
+document.getElementById('clearPreview').addEventListener('click',()=>{document.getElementById('slideUrl').value='';document.getElementById('slidePreview').removeAttribute('src');document.getElementById('slidePreview').style.display='none';});
+</script>
+</body></html>
